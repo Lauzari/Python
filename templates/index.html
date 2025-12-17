@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestor de Tareas</title>
+</head>
+<body>
+    <h1>📝 Gestor de Tareas</h1>
+
+    <form action="/agregar" method="post">
+        <input type="text" name="descripcion" placeholder="Nueva tarea" required>
+        <button type="submit">Agregar</button>
+    </form>
+
+    <ul>
+        {% for tarea in tareas %}
+            <li>
+                {{ tarea.descripcion }}
+                {% if not tarea.completada %}
+                    <a href="/completar/{{ loop.index0 }}">✔</a>
+                {% else %}
+                    (completada)
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
